@@ -14,10 +14,14 @@ pipeline {
                         description:'Select the modules']
                      ])
                  echo "Selected modules are : ${USER_INPUT}"
+				 env.Selection = "${USER_INPUT}"
                }
             }
         }
         stage ('Regression') {
+		when allOf{"$Selection"== "Regression"
+		expression {}
+		}
           parallel {
                    // The substages
                            stage('Module1') {
