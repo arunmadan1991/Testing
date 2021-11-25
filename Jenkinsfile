@@ -21,8 +21,8 @@ pipeline {
              steps {
 
                  }
-             }
         }
+
         stage ('Regression') {
                     parallel {
                    // The substages
