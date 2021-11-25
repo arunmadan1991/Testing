@@ -24,17 +24,22 @@ pipeline {
              }
         }
         stage ('Regression') {
-              steps {
                     parallel {
                    // The substages
-                           stage('Release') {
+                           stage('Module1') {
+                               steps {
 
+                               }
                            }
-                           stage('Release') {
+                           stage('Module2') {
+                               steps {
 
+                               }
                            }
-                           stage('Release') {
+                           stage('module3') {
+                               steps {
 
+                               }
                            }
                    }
               }
