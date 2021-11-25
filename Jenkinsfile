@@ -9,7 +9,7 @@ pipeline {
                      message: 'stage Selection required',
                      parameters:[
                         [$class   : 'ChoiceParameterDefinition',
-                        choices  : ['ABC','DFE','XYZ'].join('\n'),
+                        choices  : ['Regression','Selective Build'].join('\n'),
                         name     : 'USER_INPUT',
                         description:'Select the modules']
                      ])
@@ -17,12 +17,28 @@ pipeline {
                }
             }
         }
-        stage ('Testing Stage') {
+        stage ('Regression') {
              steps {
-                 withMaven(maven : 'apache-maven-3.6.1') {
-                      bat 'mvn test'
+
                  }
              }
+        }
+        stage ('Regression') {
+              steps {
+                    parallel {
+                   // The substages
+                           stage('Release') {
+
+                           }
+                           stage('Release') {
+
+                           }
+                           stage('Release') {
+
+                           }
+                   }
+              }
+
         }
     }
 }
