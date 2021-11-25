@@ -18,28 +18,20 @@ pipeline {
             }
         }
         stage ('Regression') {
-             steps {
-
-                 }
+            
         }
 
         stage ('Regression') {
                     parallel {
                    // The substages
                            stage('Module1') {
-                               steps {
-
-                               }
+                              
                            }
                            stage('Module2') {
-                               steps {
-
-                               }
+                              
                            }
                            stage('module3') {
-                               steps {
-
-                               }
+                               
                            }
                    }
         }
