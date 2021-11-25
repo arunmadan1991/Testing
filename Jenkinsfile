@@ -5,23 +5,26 @@ pipeline {
         stage ('Select module') {
             steps {
                script{
-                 def USER_INPUT=input(id: 'USER_INPUT',
+			        env.Selection =""
+                    def USER_INPUT=input(id: 'USER_INPUT',
                      message: 'stage Selection required',
                      parameters:[
                         [$class   : 'ChoiceParameterDefinition',
                         choices  : ['Regression','Selective Build'].join('\n'),
                         name     : 'USER_INPUT',
                         description:'Select the modules']
-                     ])
+                    ])
                  echo "Selected modules are : ${USER_INPUT}"
 				 env.Selection = "${USER_INPUT}"
                }
             }
         }
         stage ('Regression') {
-		when allOf{"$Selection"== "Regression"
-		expression {}
-		}
+		when {
+		    allOf{
+		      expression {"$Selection"== "Regression"}
+		    }
+		}	
           parallel {
                    // The substages
                            stage('Module1') {
