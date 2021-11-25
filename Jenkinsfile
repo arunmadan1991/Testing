@@ -24,7 +24,7 @@ pipeline {
 		    allOf{
 		      expression {"$Selection"== "Regression"}
 		    }
-		}	
+		 }	
           parallel {
                    // The substages
                            stage('Module1') {
@@ -46,6 +46,11 @@ pipeline {
         }
 
         stage ('Selective Build') {
+		when {
+		    allOf{
+		      expression {"$Selection"== "Selective Build"}
+		    }
+		 }
                     parallel {
                    // The substages
                            stage('Module1') {
