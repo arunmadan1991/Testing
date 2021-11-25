@@ -10,8 +10,8 @@ pipeline {
                      parameters:[
                         [$class   : 'ChoiceParameterDefinition',
                         choices  : ['ABC','DFE','XYZ'].join('\n'),
-                        name     : 'USER_INPUT'
-                        description:'Select the modules'
+                        name     : 'USER_INPUT',
+                        description:'Select the modules']
                      ])
                  echo "Selected modules are : ${USER_INPUT}"
                }
