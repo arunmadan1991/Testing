@@ -17,7 +17,7 @@ First article is for automatically triggerring job execution for every branch, y
 Second article is for GitHub WebHooks, that helps in triggering a Jenkins build whenever there is a code push in GitHub.
 
 And, Third article is for creating a Jenkins Pipeline job.
-
+ 
 In all of the above articles this GitHub repository has been referred.
 
 For details, you can have a look at each of my above published articles. Let me know if this was helpful. If you ever need my help, you can contact me through my LinkedIn Profile.
