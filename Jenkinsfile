@@ -17,6 +17,46 @@ pipeline {
                }
             }
         }
-        
+        stage ('Regression') {
+          parallel {
+                   // The substages
+                           stage('Module1') {
+                              steps {
+							      echo 'This build for module1'
+							  }
+                           }
+                           stage('Module2') {
+                               steps {
+							      echo 'This build for module2'
+							  }
+                           }
+                           stage('module3') {
+                                steps {
+							      echo 'This build for module3'
+							  }
+                           }
+                   }  
+        }
+
+        stage ('Selective Build') {
+                    parallel {
+                   // The substages
+                           stage('Module1') {
+                               steps {
+							      echo 'This build for module1'
+							  }
+                           }
+                           stage('Module2') {
+                               steps {
+							      echo 'This build for module2'
+							  }
+                           }
+                           stage('module3') {
+                                steps {
+							      echo 'This build for module3'
+							  }
+                           }
+                    }
+        }
     }
 }
