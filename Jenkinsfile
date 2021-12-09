@@ -10,7 +10,7 @@ pipeline {
 			        env.SelectedModule =""
 			        env.ReportName=""
                     def USER_INPUT=input(id: 'USER_INPUT',
-                     message: 'stage Selection required',
+                     message: 'Stage Selection required',
                      parameters:[
                         [$class   : 'ChoiceParameterDefinition',
                         choices  : ['Regression','Module Selection'].join('\n'),
