@@ -2,7 +2,7 @@
 pipeline {
     agent any
     stages {
-        stage ('Select module') {
+        stage ('Testing Selection') {
             steps {
                script{
 			        env.Selection =""
