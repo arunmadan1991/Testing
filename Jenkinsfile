@@ -8,7 +8,7 @@ pipeline {
 			        env.Selection =""
 			        env.List_Module =[]
 			        env.SelectedModule =""
-			        env.CommitMessage=""
+			        env.ReportName=""
                     def USER_INPUT=input(id: 'USER_INPUT',
                      message: 'stage Selection required',
                      parameters:[
@@ -84,15 +84,8 @@ pipeline {
                             }
                           }
                           steps {
-                            script{
-                               def CommitMessage = input (id: 'userInput', message: "Approve build for Module1",
-                                            parameters: [
-                               				[$class: 'TextParameterDefinition', defaultValue: """${CommitMessage}""", description: 'Change Summary', name: 'comment'],
-                                          	])
-							   echo 'This build for Module1'
-							   echo "${CommitMessage}"
-						    }
-						  }
+                             echo 'This build for Module1'
+                          }
                      }
                      stage('Module2') {
                           when {
@@ -110,18 +103,29 @@ pipeline {
                                 expression {env.ModulesSelected.contains("Module3:true")}
                             }
                           }
-                         steps {
-                            script{
-                                def CommitMessage = input (id: 'userInput', message: "Approve build for Module3",
-                                parameters: [
-                                [$class: 'TextParameterDefinition', defaultValue: """${CommitMessage}""", description: 'Change Summary', name: 'comment'],
-                                           ])
-                                echo 'This build for Module3'
-                                echo "${CommitMessage}"
-                            }
-                         }
+                          steps {
+                        	echo 'This build for Module3'
+                          }
                      }
              }
+        }
+        stage ('Report Name selection  ') {
+        	steps {
+              script{
+                  def ReportName = input (id: 'userInput', message: "Approve build for Module3",
+                   parameters: [
+                     [$class: 'TextParameterDefinition', defaultValue: """${ReportName}""", description: 'Change Summary', name: 'comment'],
+                         ])
+                     echo "${ReportName}"
+              }
+            }
+        }
+        stage ('Report Generation ') {
+               steps {
+
+                     echo "Report name is :${ReportName}"
+                  }
+               }
         }
     }
 }
