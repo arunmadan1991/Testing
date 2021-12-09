@@ -79,7 +79,7 @@ pipeline {
                      stage('Module1') {
                           when {
                             allOf{
-                               expression {env.ModulesSelected.contains(Module1)}
+                               expression {env.ModulesSelected.contains("Module1")}
                             }
                           }
                           steps {
@@ -89,7 +89,7 @@ pipeline {
                      stage('Module2') {
                           when {
                             allOf{
-                               expression {env.ModulesSelected.contains(Module2)}
+                               expression {env.ModulesSelected.contains("Module2")}
                             }
                           }
                           steps {
@@ -99,7 +99,7 @@ pipeline {
                      stage('Module3') {
                           when {
                             allOf{
-                                expression {env.ModulesSelected.contains(Module3)}
+                                expression {env.ModulesSelected.contains("Module3")}
                             }
                           }
                           steps {
