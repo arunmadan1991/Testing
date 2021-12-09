@@ -79,31 +79,31 @@ pipeline {
                      stage('Module1') {
                           when {
                             allOf{
-                               expression {"Module1" in env.ModulesSelected}
+                               expression {env.ModulesSelected.contains(Module1)}
                             }
                           }
                           steps {
-							   echo 'This build for module1'
+							   echo 'This build for Module1'
 						  }
                      }
                      stage('Module2') {
                           when {
                             allOf{
-                               expression {"Module1" in env.ModulesSelected}
+                               expression {env.ModulesSelected.contains(Module2)}
                             }
                           }
                           steps {
-						      echo 'This build for module2'
+						      echo 'This build for Module2'
 					      }
                      }
-                     stage('module3') {
+                     stage('Module3') {
                           when {
                             allOf{
-                                expression {"Module1" in env.ModulesSelected}
+                                expression {env.ModulesSelected.contains(Module3)}
                             }
                           }
                           steps {
-							   echo 'This build for module3'
+							   echo 'This build for Module3'
 					      }
                      }
              }
