@@ -83,11 +83,13 @@ pipeline {
                             }
                           }
                           steps {
-                             commitMessage = input (id: 'userInput', message: "Approve build for Module1?", parameters: [
+                            script{
+                               def commitMessage = input (id: 'userInput', message: "Approve build for Module1", parameters: [
                                				[$class: 'TextParameterDefinition', defaultValue: """${commitMessage}""", description: 'Change Summary', name: 'comment'],
                                           	])
 							   echo 'This build for Module1'
 							   echo "${commitMessage}"
+						    }
 						  }
                      }
                      stage('Module2') {
