@@ -76,56 +76,52 @@ pipeline {
 		        }
 		     }
              parallel {
-             // The substages
-                     stage('Module1') {
-                          when {
+                 stage('Module1') {
+                      when {
                             allOf{
                                expression {env.ModulesSelected.contains("Module1:true")}
                             }
-                          }
-                          steps {
+                      }
+                      steps {
                              echo 'This build for Module1'
-                          }
-                     }
-                     stage('Module2') {
-                          when {
+                      }
+                 }
+                 stage('Module2') {
+                      when {
                             allOf{
                                expression {env.ModulesSelected.contains("Module2:true")}
                             }
-                          }
-                          steps {
+                      }
+                      steps {
 						      echo 'This build for Module2'
-					      }
-                     }
-                     stage('Module3') {
-                          when {
+					  }
+                 }
+                 stage('Module3') {
+                      when {
                             allOf{
                                 expression {env.ModulesSelected.contains("Module3:true")}
                             }
-                          }
-                          steps {
+                      }
+                      steps {
                         	echo 'This build for Module3'
-                          }
-                     }
+                      }
+                 }
              }
         }
         stage ('Report Name selection  ') {
-        	steps {
+           steps {
               script{
-                  def ReportName = input (id: 'userInput', message: "Approve build for Module3",
+                def ReportName = input (id: 'userInput', message: "Approve build for Module3",
                    parameters: [
-                     [$class: 'TextParameterDefinition', defaultValue: """${ReportName}""", description: 'Change Summary', name: 'comment'],
-                         ])
-                     echo "${ReportName}"
+                     [$class: 'TextParameterDefinition', defaultValue: """${ReportName}""", description: 'Change Summary', name: 'comment'],])
+                echo "${ReportName}"
               }
-            }
+           }
         }
         stage ('Report Generation ') {
-               steps {
-
-                     echo "Report name is :${ReportName}"
-                  }
-               }
+            steps {
+                 echo "Report name is :${ReportName}"
+            }
         }
     }
 }
