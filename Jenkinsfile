@@ -85,7 +85,8 @@ pipeline {
                           }
                           steps {
                             script{
-                               def CommitMessage = input (id: 'userInput', message: "Approve build for Module1", parameters: [
+                               def CommitMessage = input (id: 'userInput', message: "Approve build for Module1",
+                                            parameters: [
                                				[$class: 'TextParameterDefinition', defaultValue: """${CommitMessage}""", description: 'Change Summary', name: 'comment'],
                                           	])
 							   echo 'This build for Module1'
@@ -109,9 +110,16 @@ pipeline {
                                 expression {env.ModulesSelected.contains("Module3:true")}
                             }
                           }
-                          steps {
-							   echo 'This build for Module3'
-					      }
+                         steps {
+                            script{
+                                def CommitMessage = input (id: 'userInput', message: "Approve build for Module3",
+                                parameters: [
+                                [$class: 'TextParameterDefinition', defaultValue: """${CommitMessage}""", description: 'Change Summary', name: 'comment'],
+                                           ])
+                                echo 'This build for Module3'
+                                echo "${CommitMessage}"
+                            }
+                         }
                      }
              }
         }
