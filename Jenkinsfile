@@ -11,7 +11,7 @@ pipeline {
                      message: 'stage Selection required',
                      parameters:[
                         [$class   : 'ChoiceParameterDefinition',
-                        choices  : ['Regression','Selective Build'].join('\n'),
+                        choices  : ['Regression','Module Selection'].join('\n'),
                         name     : 'USER_INPUT',
                         description:'Select the modules']
                     ])
@@ -45,10 +45,10 @@ pipeline {
                            }
                    }  
         }
-        stage ('Selective Build') {
+        stage ('Module Selection ') {
               when {
                   allOf{
-                 	  expression {"$Selection"== "Selective Build"}
+                 	  expression {"$Selection"== "Module Selection"}
                   }
               }
               steps {
@@ -69,7 +69,7 @@ pipeline {
         stage ('Selected Module Build') {
 		     when {
 		        allOf{
-		          expression {"$Selection"== "Selective Build"}
+		          expression {"$Selection"== "Module Selection"}
 		        }
 		     }
              parallel {
