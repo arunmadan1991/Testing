@@ -77,16 +77,31 @@ pipeline {
              parallel {
              // The substages
                      stage('Module1') {
-                           steps {
+                          when {
+                            allOf{
+                               expression {"Module1" in env.ModulesSelected}
+                            }
+                          }
+                          steps {
 							   echo 'This build for module1'
-						   }
+						  }
                      }
                      stage('Module2') {
+                          when {
+                            allOf{
+                               expression {"Module1" in env.ModulesSelected}
+                            }
+                          }
                           steps {
 						      echo 'This build for module2'
 					      }
                      }
                      stage('module3') {
+                          when {
+                            allOf{
+                                expression {"Module1" in env.ModulesSelected}
+                            }
+                          }
                           steps {
 							   echo 'This build for module3'
 					      }
