@@ -8,6 +8,7 @@ pipeline {
 			        env.Selection =""
 			        env.List_Module =[]
 			        env.SelectedModule =""
+			        env.CommitMessage=""
                     def USER_INPUT=input(id: 'USER_INPUT',
                      message: 'stage Selection required',
                      parameters:[
@@ -84,11 +85,11 @@ pipeline {
                           }
                           steps {
                             script{
-                               def commitMessage = input (id: 'userInput', message: "Approve build for Module1", parameters: [
-                               				[$class: 'TextParameterDefinition', defaultValue: """${commitMessage}""", description: 'Change Summary', name: 'comment'],
+                               def CommitMessage = input (id: 'userInput', message: "Approve build for Module1", parameters: [
+                               				[$class: 'TextParameterDefinition', defaultValue: """${CommitMessage}""", description: 'Change Summary', name: 'comment'],
                                           	])
 							   echo 'This build for Module1'
-							   echo "${commitMessage}"
+							   echo "${CommitMessage}"
 						    }
 						  }
                      }
