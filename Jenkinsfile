@@ -6,6 +6,7 @@ pipeline {
             steps {
                script{
 			        env.Selection =""
+			        env.List_Module =[]
                     def USER_INPUT=input(id: 'USER_INPUT',
                      message: 'stage Selection required',
                      parameters:[
@@ -44,31 +45,51 @@ pipeline {
                            }
                    }  
         }
-
         stage ('Selective Build') {
-		when {
-		    allOf{
-		      expression {"$Selection"== "Selective Build"}
-		    }
-		 }
-                    parallel {
-                   // The substages
-                           stage('Module1') {
-                               steps {
-							      echo 'This build for module1'
-							  }
-                           }
-                           stage('Module2') {
-                               steps {
-							      echo 'This build for module2'
-							  }
-                           }
-                           stage('module3') {
-                                steps {
-							      echo 'This build for module3'
-							  }
-                           }
-                    }
+              when {
+                  allOf{
+                 	  expression {"$Selection"== "Selective Build"}
+                  }
+              }
+              steps {
+                 script{
+              	     env.Selection =""
+                         def List_Module = input(id: 'chooseOptions',
+                         message: 'Module Selection required',
+                         parameters:[
+                         [$class   : 'BooleanParameterDefinition',defaultValue : false, name : 'Module1'],
+                         [$class   : 'BooleanParameterDefinition',defaultValue : false, name : 'Module2'],
+                         [$class   : 'BooleanParameterDefinition',defaultValue : false, name : 'Module3']
+                         ])
+                         echo "Selected modules are : ${List_Module}"
+              		     env.ModuleSelected = "${List_Module}"
+                 }
+              }
+        }
+        stage ('Selected Module Build') {
+		     when {
+		        allOf{
+		          expression {"$Selection"== "Selective Build"}
+		        }
+		     }
+             parallel {
+             // The substages
+                     stage('Module1') {
+                           steps {
+							   echo 'This build for module1'
+						   }
+                     }
+                     stage('Module2') {
+                          steps {
+						      echo 'This build for module2'
+					      }
+                     }
+                     stage('module3') {
+                          steps {
+							   echo 'This build for module3'
+					      }
+                     }
+             }
         }
     }
 }
