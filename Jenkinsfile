@@ -111,10 +111,11 @@ pipeline {
         stage ('Report Name selection  ') {
            steps {
               script{
-                def ReportName = input (id: 'userInput', message: "Approve build for Module3",
+                def userInput = input (id: 'userInput', message: "Approve build for Module3",
                    parameters: [
                      [$class: 'TextParameterDefinition', defaultValue: """${ReportName}""", description: 'Change Summary', name: 'comment'],])
-                echo "${ReportName}"
+                echo "${userInput}"
+                env.ReportName = "${userInput}"
               }
            }
         }
