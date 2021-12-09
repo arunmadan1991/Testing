@@ -7,6 +7,7 @@ pipeline {
                script{
 			        env.Selection =""
 			        env.List_Module =[]
+			        env.SelectedModule =""
                     def USER_INPUT=input(id: 'USER_INPUT',
                      message: 'stage Selection required',
                      parameters:[
@@ -62,14 +63,15 @@ pipeline {
                          [$class   : 'BooleanParameterDefinition',defaultValue : false, name : 'Module3']
                          ])
                          echo "Selected modules are : ${List_Module}"
-              		     env.ModuleSelected = "${List_Module}"
+              		     env.ModulesSelected = "${List_Module}"
+              		     env.SelectedModule = "True"
                  }
               }
         }
         stage ('Selected Module Build') {
 		     when {
 		        allOf{
-		          expression {"$Selection"== "Module Selection"}
+		          expression {"$SelectedModule"== "True"}
 		        }
 		     }
              parallel {
