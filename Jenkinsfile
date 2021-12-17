@@ -86,7 +86,7 @@ pipeline {
                             }
                       }
                       steps {
-					         build job: 'http://192.168.1.24:8080/job/Module2/job/main', propagate: true, wait: true
+					         build job: 'Module1/main', propagate: true, wait: true
                              echo 'This build for Module1'
                       }
                  }
@@ -97,7 +97,7 @@ pipeline {
                             }
                       }
                       steps {
-					         build'http://192.168.1.24:8080/job/Module2/job/main'
+					         build'http://192.168.1.24:8080/job/Module2/job/main/'
 						     echo 'This build for Module2'
 					  }
                  }
@@ -108,7 +108,7 @@ pipeline {
                             }
                       }
                       steps {
-					         build 'http://192.168.1.24:8080/job/Module3/job/main'
+					         build 'http://192.168.1.24:8080/job/Module3/job/main/'
                         	 echo 'This build for Module3'
                       }
                  }
