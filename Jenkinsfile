@@ -32,19 +32,19 @@ pipeline {
                    // The substages
                            stage('Module1') {
                               steps {
-							      build 'http://localhost:8080/job/Module1/job/main'
+							      build 'http://192.168.1.24:8080/job/Module1/job/main'
 							      echo 'This build for module1'
 							  }
                            }
                            stage('Module2') {
                                steps {
-							      build'http://localhost:8080/job/Module2/job/main'
+							      build'http://192.168.1.24:8080/job/Module2/job/main'
 							      echo 'This build for module2'
 							  }
                            }
                            stage('module3') {
                                 steps {
-								  build'http://localhost:8080/job/Module3/job/main'
+								  build'http://192.168.1.24:8080/job/Module3/job/main'
 							      echo 'This build for module3'
 							  }
                            }
@@ -86,7 +86,7 @@ pipeline {
                             }
                       }
                       steps {
-					         build 'http://localhost:8080/job/Module1/job/main'
+					         build 'http://192.168.1.24:8080/job/Module1/job/main'
                              echo 'This build for Module1'
                       }
                  }
@@ -97,7 +97,7 @@ pipeline {
                             }
                       }
                       steps {
-					         build'http://localhost:8080/job/Module2/job/main'
+					         build'http://192.168.1.24:8080/job/Module2/job/main'
 						     echo 'This build for Module2'
 					  }
                  }
@@ -108,7 +108,7 @@ pipeline {
                             }
                       }
                       steps {
-					         build 'http://localhost:8080/job/Module3/job/main'
+					         build 'http://192.168.1.24:8080/job/Module3/job/main'
                         	 echo 'This build for Module3'
                       }
                  }
