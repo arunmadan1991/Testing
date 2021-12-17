@@ -32,19 +32,19 @@ pipeline {
                    // The substages
                            stage('Module1') {
                               steps {
-							      build 'http://192.168.1.24:8080/job/Module1/job/main'
+							     build job: 'Module1/main', propagate: true, wait: true
 							      echo 'This build for module1'
 							  }
                            }
                            stage('Module2') {
                                steps {
-							      build'http://192.168.1.24:8080/job/Module2/job/main'
+							      build job: 'Module2/main', propagate: true, wait: true
 							      echo 'This build for module2'
 							  }
                            }
                            stage('module3') {
                                 steps {
-								  build'http://192.168.1.24:8080/job/Module3/job/main'
+								  build job: 'Module3/main', propagate: true, wait: true
 							      echo 'This build for module3'
 							  }
                            }
@@ -97,7 +97,7 @@ pipeline {
                             }
                       }
                       steps {
-					         build'http://192.168.1.24:8080/job/Module2/job/main/'
+					         build job: 'Module2/main', propagate: true, wait: true
 						     echo 'This build for Module2'
 					  }
                  }
@@ -108,7 +108,7 @@ pipeline {
                             }
                       }
                       steps {
-					         build 'http://192.168.1.24:8080/job/Module3/job/main/'
+					         build job: 'Module3/main', propagate: true, wait: true
                         	 echo 'This build for Module3'
                       }
                  }
