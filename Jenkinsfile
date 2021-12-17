@@ -33,7 +33,7 @@ pipeline {
                            stage('Module1') {
                               steps {
 							      echo 'This build for module1'
-								  build http://localhost:8080/job/TestingModules/job/main/
+								  build 'http://localhost:8080/job/TestingModules/job/main'
 							  }
                            }
                            stage('Module2') {
