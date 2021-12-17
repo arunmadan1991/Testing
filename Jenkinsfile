@@ -115,6 +115,11 @@ pipeline {
              }
         }
         stage ('Report Name selection  ') {
+		     when {
+                  allOf{
+                 	  expression {"$Selection"== "Module Selection"}
+                  }
+              }
            steps {
               script{
                 def userInput = input (id: 'userInput', message: "Approve build for Module3",
@@ -127,7 +132,11 @@ pipeline {
         }
         stage ('Report Generation ') {
             steps {
-                 echo "Report name is :${ReportName}"
+			   if (env.Selection == 'Regression') {
+                echo "Report name is :${ReportName}"
+               } else {
+                echo 'I execute elsewhere'
+              }  
             }
         }
     }
