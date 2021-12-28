@@ -130,11 +130,15 @@ pipeline {
            }
         }
         stage ('Report Generation ') {
-            steps {if (env.Selection != 'Regression') {
-                echo "Report name is :${ReportName}"
-               } else {
-                echo 'Reression '
-              }  
+            steps {
+               Script{
+                   if (env.Selection != 'Regression') {
+                      echo "Report name is :${ReportName}"
+                   }
+                   else {
+                    echo 'Reression '
+                   }
+               }
             }
         }
     }
