@@ -131,7 +131,7 @@ pipeline {
         }
         stage ('Report Generation ') {
             steps {
-               Script{
+               script{
                    if (env.Selection == 'Module Selection"') {
                       echo "Report name is :${ReportName}"
                    }
