@@ -132,7 +132,7 @@ pipeline {
         stage ('Report Generation ') {
             steps {
                script{
-                   if (env.Selection == 'Module Selection"') {
+                   if (env.Selection == 'Module Selection') {
                       echo "Report name is :${ReportName}"
                    }
                    else {
