@@ -132,11 +132,11 @@ pipeline {
         stage ('Report Generation ') {
             steps {
                Script{
-                   if (env.Selection != 'Regression') {
+                   if (env.Selection == 'Module Selection"') {
                       echo "Report name is :${ReportName}"
                    }
                    else {
-                    echo 'Reression '
+                    echo 'Regression Test Suite run '
                    }
                }
             }
