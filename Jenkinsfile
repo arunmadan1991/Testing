@@ -58,7 +58,6 @@ pipeline {
               }
               steps {
                  script{
-              	     env.Selection =""
                          def List_Module = input(id: 'chooseOptions',
                          message: 'Module Selection required',
                          parameters:[
@@ -131,11 +130,10 @@ pipeline {
            }
         }
         stage ('Report Generation ') {
-            steps {
-			   if (env.Selection == 'Regression') {
+            steps {if (env.Selection != 'Regression') {
                 echo "Report name is :${ReportName}"
                } else {
-                echo 'I execute elsewhere'
+                echo 'Reression '
               }  
             }
         }
